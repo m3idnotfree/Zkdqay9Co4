@@ -1,0 +1,14 @@
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+
+alias reload='source ~/.zshrc; source ~/.zshenv'
+
+alias ls='exa -a --sort=modified --reverse'
+alias la='exa -aF --color=auto --sort=modified --reverse'
+alias lsa='exa -alF --header --color=auto --sort=modified --reverse'
+alias lsd='exa -D --ignore-glob=node_modules --color=auto --sort=modified --reverse'
+alias lsdt='exa -TD --level=4 --color=auto --sort=modified --reverse'
+# alias lsdt='exa -TD --level=4 --color=auto --ignore-glob=$ignore_glob --sort=modified --reverse'
+alias lst='exa --tree --level=4 --color=auto --sort=modified --reverse'
+# alias lst='exa --tree --level=4 --ignore-glob=$ignore_glob --color=auto --sort=modified --reverse'

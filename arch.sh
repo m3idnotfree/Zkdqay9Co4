@@ -13,7 +13,7 @@ yay_install
 config_path="$HOME/.config"
 back_path="$HOME/zkd"
 
-if [ "$yn" == "y"]; then
+if [ "$yn" == "y" ]; then
 	echo "create backup directory"
 	mkdir -p $back_path
 fi

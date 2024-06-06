@@ -40,6 +40,6 @@ cp -f ./zsh/.zshrc $zshrc
 cp -f ./zsh/.zshenv $zshenv
 cp -f ./zsh/.zsh_alias $zsh_alias
 
-command git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $zsh_directory/plugins
+command git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $zsh_directory/plugins/zsh-autocomplete
 
 echo "source $zsh_directory/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh" >>${ZDOTDIR:-$HOME}/.zshrc

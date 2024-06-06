@@ -19,7 +19,8 @@ source ./zsh_setup.sh $yn $back_path
 echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
 echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
 
-echo "autoload -Uz compinit\ncompinit" >>${ZDOTDIR:-$HOME}/.zshrc
+echo "autoload -Uz compinit" >>${ZDOTDIR:-$HOME}/.zshrc
+echo "compinit" >>${ZDOTDIR:-$HOME}/.zshrc
 
 echo 'eval "$(fzf --zsh)"' >>${ZDOTDIR:-$HOME}/.zshrc
 echo 'eval "$(starship init zsh)"' >>${ZDOTDIR:-$HOME}/.zshrc

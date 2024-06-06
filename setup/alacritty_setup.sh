@@ -19,4 +19,4 @@ fi
 # echo "create alacritty config"
 # mkdir -p $alacritty
 # cp -rf ../alacritty $config_path
-cp_config $alacritty_path ../alacritty
+cp_config $alacritty_path ./alacritty

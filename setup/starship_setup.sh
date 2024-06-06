@@ -16,4 +16,4 @@ fi
 
 # echo "create starship config"
 # cp -f ../starship.toml $config_path
-f_cp_config "../starship.toml"
+f_cp_config "./starship.toml"

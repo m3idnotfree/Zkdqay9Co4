@@ -19,4 +19,4 @@ fi
 # echo "create mpv config"
 # mkdir -p $mpv
 # cp -rf ../mpv $mpv
-cp_config $mpv_path ../mpv
+cp_config $mpv_path ./mpv

@@ -35,7 +35,7 @@ declare -a package_list=(
 )
 
 for package in "${package_list[@]}"; do
-	pacman_install package
+	pacman_install $package
 done
 
 declare -a setups=("zsh" "alacritty" "starship" "mpv" "zoxide")

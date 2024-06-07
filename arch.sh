@@ -18,31 +18,29 @@ if [ "$yn" == "y" ]; then
 	mkdir -p $back_path
 fi
 
-declare -a package_list=("zsh-syntax-highlighting", "zsh-autosuggestions", "alacritty", "starship", "fzf", "ripgrep", "zoxide", "exa", "fd", "mpv")
+declare -a package_list=(
+	"zsh-syntax-highlighting"
+	"zsh-autosuggestions"
+	"alacritty"
+	"exa"
+	"fd"
+	"ripgrep"
+	"fzf"
+	"zoxide"
+	"starship"
+	"mpv"
+	"fcitx5-im"
+	"fcitx-hangul"
+	"noto-fonts-cjk"
+)
 
 for package in "${package_list[@]}"; do
 	pacman_install package
 done
 
-# pacman_install "alacritty"
-# pacman_install "starship"
-# pacman_install "fzf"
-# pacman_install "ripgrep"
-# pacman_install "zoxide"
-# pacman_install "zsh-syntax-highlighting"
-# pacman_install "zsh-autosuggestions"
-# pacman_install "mpv"
-# pacman_install "exa"
-# pacman_install "fd"
-
-declare -a setups=("zsh" "alacritty" "starship" "mpv")
+declare -a setups=("zsh" "alacritty" "starship" "mpv" "zoxide")
 
 load_setup
-
-# source ./setup/alacritty_setup.sh $yn $config_path $back_path
-# source ./setup/mpv_setup.sh $yn $config_path $back_path
-# source ./setup/starship.sh $yn $config_path $back_path
-# source ./setup/zsh_setup.sh $yn $config_path $back_path
 
 echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
 echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >>${ZDOTDIR:-$HOME}/.zshrc

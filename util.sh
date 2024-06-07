@@ -14,6 +14,8 @@ zsh_alias="$HOME/.zsh_alias"
 
 zsh_backup_path="$back_path/zsh"
 
+zoxide_path="$HOME/.config/zoxide.zsh"
+
 declare -a zsh_family=("zshrc" "zshenv" "zsh_alias")
 
 load_setup() {

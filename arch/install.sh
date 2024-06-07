@@ -1,9 +1,12 @@
 #! /bin/bash
 
 pacman_install() {
-	command pacman -Qqe $1 &>/dev/null
+	# command pacman -Qqe $1 &>/dev/null
 
-	if [[ $? -ne 0 ]]; then
+	# if [[ $? -ne 0 ]]; then
+	# 	command sudo pacman -S --noconfirm $1
+	# fi
+	if ! command pacman -Qqe $1 &>/dev/null; then
 		command sudo pacman -S --noconfirm $1
 	fi
 }

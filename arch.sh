@@ -18,18 +18,24 @@ if [ "$yn" == "y" ]; then
 	mkdir -p $back_path
 fi
 
-pacman_install "alacritty"
-pacman_install "starship"
-pacman_install "fzf"
-pacman_install "ripgrep"
-pacman_install "zoxide"
-pacman_install "zsh-syntax-highlighting"
-pacman_install "zsh-autosuggestions"
-pacman_install "mpv"
-pacman_install "exa"
-pacman_install "fd"
+declare -a package_list=("zsh-syntax-highlighting", "zsh-autosuggestions", "alacritty", "starship", "fzf", "ripgrep", "zoxide", "exa", "fd", "mpv")
 
-declare -a setups=("alacritty" "mpv" "starship" "zsh")
+for package in "${package_list[@]}"; do
+	pacman_install package
+done
+
+# pacman_install "alacritty"
+# pacman_install "starship"
+# pacman_install "fzf"
+# pacman_install "ripgrep"
+# pacman_install "zoxide"
+# pacman_install "zsh-syntax-highlighting"
+# pacman_install "zsh-autosuggestions"
+# pacman_install "mpv"
+# pacman_install "exa"
+# pacman_install "fd"
+
+declare -a setups=("zsh" "alacritty" "starship" "mpv")
 
 load_setup
 
@@ -40,6 +46,7 @@ load_setup
 
 echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
 echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+echo "source $HOME/zoxide.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
 
 echo "autoload -Uz compinit" >>${ZDOTDIR:-$HOME}/.zshrc
 echo "compinit" >>${ZDOTDIR:-$HOME}/.zshrc

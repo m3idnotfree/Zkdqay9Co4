@@ -1,72 +1,87 @@
 #! /bin/bash
 
-config_path="$HOME/.config"
-back_path="$HOME/zkd"
+brew_install() {
+	if ! command brew list $1 &>/dev/null; then
+		command brew install $1
+	fi
+}
 
-alacritty_path="$HOME/.config/alacritty"
-mpv_path="$HOME/.config/mpv"
-starship_path="$HOME/.config/starship.toml"
+pacman_install() {
+	if ! command pacman -Qqe $1 &>/dev/null; then
+		command sudo pacman -S --noconfirm $1
+	fi
+}
 
-zsh_directory="$HOME/.zsh"
-zshrc="$HOME/.zshrc"
-zshenv="$HOME/.zshenv"
-zsh_alias="$HOME/.zsh_alias"
+yay_install() {
+	if ! command pacman -Qm $1 &>/dev/null; then
+		command yay $1
+	fi
+}
 
-zsh_backup_path="$back_path/zsh"
+cp_config_dir() {
+	mkdir -p $1
+	cp -rf $2 ${3:-$CONFIG_PATH}
+}
 
-zoxide_path="$HOME/.config/zoxide.zsh"
+cp_config_file() {
+	cp -f $1 ${2:-$CONFIG_PATH}
+}
 
-declare -a zsh_family=("zshrc" "zshenv" "zsh_alias")
+ln_config_dir() {
+	mkdir -p $1
+	ln -s $2 ${3:-$CONFIG_PATH}
+}
 
-load_setup() {
+ln_config_file() {
+	ln -s $1 ${2:-$CONFIG_PATH}
+}
 
-	for i in "${setups[@]}"; do
-		# source ./setup/${i}_setup.sh $yn $config_path $back_path
-		source ./setup/${i}_setup.sh
+move_backup_dir() {
+	if [ -d "$1" ]; then
+		mv $1 ${2:-$BACKUP_PATH}
+	fi
+}
+
+move_backup_file() {
+	if [ -f "$1" ]; then
+		mv $1 ${2:-$BACKUP_PATH}
+	fi
+}
+
+source_setup() {
+	for setup in "${setups[@]}"; do
+		source ./setup/${setup}_setup.sh
 	done
 }
 
-move_backup() {
-	if [ -d "$1" ]; then
-		# echo "alacritty config already exist"
-		# echo "mv ~/.config/alacritty ~/zkd/alacritty"
-
-		mv $1 $backup_path
+mac_setup() {
+	if ! command -v brew &>/dev/null; then
+		command /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
+
+	for package in "${package_list[@]}"; do
+		brew_install $package
+	done
+
+	for package in "${brew_extra[@]}"; do
+		brew_install $package
+	done
 }
 
-f_move_backup() {
-	if [ -f "$1" ]; then
-		# echo "alacritty config already exist"
-		# echo "mv ~/.config/alacritty ~/zkd/alacritty"
-
-		mv $1 $backup_path
+arch_setup() {
+	if ! command -v yay &>/dev/null; then
+		command sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 	fi
-}
 
-cp_config() {
-	mkdir -p $1
-	cp -rf $2 $config_path
-}
+	for package in "${package_list[@]}"; do
+		pacman_install $package
+	done
 
-f_cp_config() {
-	cp -f $1 $config_path
-}
+	for package in "${pacman_extra[@]}"; do
+		pacman_install $package
+	done
 
-f_zsh_backup() {
-	if [ -f "$1" ]; then
-		# echo "mv ~/.zshrc ~/zkd/zsh/.zshrc"
-		# mv $zshrc $zsh_backup_path
-		mv $1 $zsh_backup_path
-	fi
-}
-
-d_zsh_backup() {
-	if [ -d "$zsh_directory" ]; then
-		# echo "mv ~/.zshrc ~/zkd/zsh/.zshrc"
-		# mv $zshrc $zsh_backup_path
-		mkdir -p $zsh_backup_path
-		mv $zsh_directory $zsh_backup_path
-		# mv $1 $zsh_backup_path
-	fi
+	for package in "${yay_extra[@]}"; do
+		yay_install $package
+	done
 }

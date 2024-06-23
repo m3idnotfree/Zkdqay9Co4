@@ -59,29 +59,61 @@ mac_setup() {
 		command /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
-	for package in "${package_list[@]}"; do
+	for package in "${PACKAGE_LIST[@]}"; do
 		brew_install $package
 	done
 
-	for package in "${brew_extra[@]}"; do
+	for package in "${BREW_EXTRA_LIST[@]}"; do
 		brew_install $package
 	done
 }
 
 arch_setup() {
+	command sudo pacman -Syu --noconfirm
+
 	if ! command -v yay &>/dev/null; then
 		command sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 	fi
 
-	for package in "${package_list[@]}"; do
+	for package in "${PACKAGE_LIST[@]}"; do
 		pacman_install $package
 	done
 
-	for package in "${pacman_extra[@]}"; do
+	for package in "${PACMAN_EXTRA_LIST[@]}"; do
 		pacman_install $package
 	done
 
-	for package in "${yay_extra[@]}"; do
+	for package in "${YAY_EXTRA_LIST[@]}"; do
 		yay_install $package
 	done
+}
+
+echo_source_zshrc() {
+	case "${OS}" in
+	arch)
+		echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		echo "source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugins.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		echo "source $HOME/.config/zoxide.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+
+		;;
+	Darwin)
+		echo "source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		echo "source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		echo "source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		echo "source $HOME/.config/zoxide.zsh" >>${ZDOTDIR:-$HOME}/.zshrc
+		;;
+	*)
+		echo "echo source error"
+		echo "not support $OS"
+
+		exit 1
+		;;
+	esac
+}
+
+echo_eval_zshrc() {
+	echo 'eval "$(fzf --zsh)"' >>${ZDOTDIR:-$HOME}/.zshrc
+	echo 'eval "$(starship init zsh)"' >>${ZDOTDIR:-$HOME}/.zshrc
+	echo 'eval "$(zoxide init zsh)"' >>${ZDOTDIR:-$HOME}/.zshrc
 }

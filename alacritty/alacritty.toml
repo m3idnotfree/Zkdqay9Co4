@@ -3,9 +3,9 @@ import = [
   "~/.config/alacritty/keybinding.toml.toml",
 ]
 
-# [shell]
-# program = "/bin/zsh"
-# args = ["-l", "-c", "zellij"]
+[shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "zellij"]
 
 [window]
 dimensions = { columns = 80, lines = 24 }

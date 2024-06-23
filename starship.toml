@@ -4,29 +4,18 @@
 # Inserts a blank line between shell prompts
 # add_newline = true
 format = """
- $directory\
+$directory\
 $git_branch\
 """
 right_format = """
+$package\
 $cmd_duration\
 """
 [directory]
 truncation_length = 1
 style = "blue"
 
-[character] # The name of the module we are configuring is "character"
-# success_symbol = "[](purple)"
-# error_symbol = "[❯](red)"
-# vimcmd_symbol = "[❮](green)"
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-# disabled = true
-
 [git_branch]
-# format = "[($branch)(:$remote_branch)]($style) "
-# format ='\[($branch)($style))\]'
-# format = '\([($branch)]($style)\)'
 format = '([\($branch\) $symbol]($style))'
 symbol = "[✗](red) "
 style = "bright-black"
@@ -37,8 +26,9 @@ diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
 modified = "!${count}"
 
+[package]
+format = '[$version](fg:#E78A4E) '
+
 [cmd_duration]
 format = '[$duration]($style) '
-
 style = 'yellow'
-

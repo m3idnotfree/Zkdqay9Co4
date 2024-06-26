@@ -143,9 +143,9 @@ return {
       { '<M-h>', mode = { 'n', 'x', 'v' }, desc = 'move left' },
       { '<M-l>', mode = { 'n', 'x', 'v' }, desc = 'move right' },
     },
-    -- config = function()
-    --   require('mini.move').setup()
-    -- end,
+    config = function()
+      require('mini.move').setup()
+    end,
   },
   {
     'echasnovski/mini.bufremove',

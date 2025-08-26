@@ -1,59 +1,124 @@
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
-    }
-
-    normal  {
-        bind "Esc" { SwitchToMode "Locked"; }
-        bind "n"   { NewPane; SwitchToMode "Locked"; }
-        bind "t"   { SwitchToMode "tab"; }
-        bind "p"   { SwitchToMode "pane"; }
-        bind "r"   { SwitchToMode "resize"; }
-        bind "s"   { SwitchToMode "session"; }
-
-        bind "y" {
-          LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
-              // "LOAD_ZELLIJ_BINDINGS" "false"
-              floating true
-          };
-          SwitchToMode "Locked";
+        bind "Ctrl g" {
+            SwitchToMode "Normal"
         }
-
-        bind "h" "Left"  { MoveFocus "Left"; }
-        bind "l" "Right" { MoveFocus "Right"; }
-        bind "j" "Down"  { MoveFocus "Down"; }
-        bind "k" "Up"    { MoveFocus "Up"; }
-
-        bind "]" { GoToNextTab; }
-        bind "[" { GoToPreviousTab; }
-
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
-        bind "w" { ToggleFloatingPanes; SwitchToMode "Locked"; }
     }
-
-    resize  {
-        bind "Ctrl n"    { SwitchToMode "Normal"; }
-        bind "Esc"       { SwitchToMode "Locked"; }
-        bind "Left"  "[" { Resize "Increase Left"; }
-        bind "Right" "]" { Resize "Increase Right"; }
-        bind "Down"      { Resize "Increase Down"; }
-        bind "Up"        { Resize "Increase Up"; }
+    normal {
+        bind "Esc" {
+            SwitchToMode "Locked"
+        }
+        bind "n" {
+            NewPane
+            SwitchToMode "Locked"
+        }
+        bind "t" {
+            SwitchToMode "tab"
+        }
+        bind "p" {
+            SwitchToMode "pane"
+        }
+        bind "r" {
+            SwitchToMode "resize"
+        }
+        bind "s" {
+            SwitchToMode "session"
+        }
+        bind "y" {
+            LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
+                // "LOAD_ZELLIJ_BINDINGS" "false"
+                floating true
+            }
+            SwitchToMode "Locked"
+        }
+        bind "h" "Left" {
+            MoveFocus "Left"
+        }
+        bind "l" "Right" {
+            MoveFocus "Right"
+        }
+        bind "j" "Down" {
+            MoveFocus "Down"
+        }
+        bind "k" "Up" {
+            MoveFocus "Up"
+        }
+        bind "]" {
+            GoToNextTab
+        }
+        bind "[" {
+            GoToPreviousTab
+        }
+        bind "f" {
+            ToggleFocusFullscreen
+            SwitchToMode "Locked"
+        }
+        bind "w" {
+            ToggleFloatingPanes
+            SwitchToMode "Locked"
+        }
     }
-
+    resize {
+        bind "Ctrl n" {
+            SwitchToMode "Normal"
+        }
+        bind "Esc" {
+            SwitchToMode "Locked"
+        }
+        bind "Left" "[" {
+            Resize "Increase Left"
+        }
+        bind "Right" "]" {
+            Resize "Increase Right"
+        }
+        bind "Down" {
+            Resize "Increase Down"
+        }
+        bind "Up" {
+            Resize "Increase Up"
+        }
+    }
     pane {
-        bind "Esc"       { SwitchToMode "Locked"; }
-        bind "n"         { NewPane; SwitchToMode "Locked"; }
-        bind "d"         { NewPane "Down"; SwitchToMode "Locked"; }
-        bind "r"         { NewPane "Right"; SwitchToMode "Locked"; }
-        bind "x"         { CloseFocus; SwitchToMode "Locked"; }
-        bind "f"         { ToggleFocusFullscreen; SwitchToMode "Locked"; }
-        bind "w"         { ToggleFloatingPanes; SwitchToMode "Locked"; }
-        bind "Left"  "[" { MoveFocus "Left"; }
-        bind "Right" "]" { MoveFocus "Right"; }
-        bind "Down"      { MoveFocus "Down"; }
-        bind "Up"        { MoveFocus "Up"; }
+        bind "Esc" {
+            SwitchToMode "Locked"
+        }
+        bind "n" {
+            NewPane
+            SwitchToMode "Locked"
+        }
+        bind "d" {
+            NewPane "Down"
+            SwitchToMode "Locked"
+        }
+        bind "r" {
+            NewPane "Right"
+            SwitchToMode "Locked"
+        }
+        bind "x" {
+            CloseFocus
+            SwitchToMode "Locked"
+        }
+        bind "f" {
+            ToggleFocusFullscreen
+            SwitchToMode "Locked"
+        }
+        bind "w" {
+            ToggleFloatingPanes
+            SwitchToMode "Locked"
+        }
+        bind "Left" "[" {
+            MoveFocus "Left"
+        }
+        bind "Right" "]" {
+            MoveFocus "Right"
+        }
+        bind "Down" {
+            MoveFocus "Down"
+        }
+        bind "Up" {
+            MoveFocus "Up"
+        }
     }
-
     // move {
     //     bind "Ctrl h" { SwitchToMode "Normal"; }
     //     bind "n" "Tab" { MovePane; }
@@ -63,59 +128,85 @@ keybinds clear-defaults=true {
     //     bind "Up" { MovePane "Up"; }
     //     bind "Right" { MovePane "Right"; }
     // }
-
     tab {
-        bind "Esc"                  { SwitchToMode "Locked"; }
-        bind "l" "Right" "Down" "j" { GoToNextTab; SwitchToMode "Locked"; }
-        bind "h" "Left"  "Up"   "k" { GoToPreviousTab; SwitchToMode "Locked"; }
-        bind "n"                    { NewTab; SwitchToMode "Locked"; }
-        bind "x"                    { CloseTab; SwitchToMode "Locked"; }
-
-        bind "r"                    { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "Left"  "Up"   "["     { GoToPreviousTab; }
-        bind "Right" "Down" "]"     { GoToNextTab; }
+        bind "Esc" {
+            SwitchToMode "Locked"
+        }
+        bind "l" "Right" "Down" "j" {
+            GoToNextTab
+            SwitchToMode "Locked"
+        }
+        bind "h" "Left" "Up" "k" {
+            GoToPreviousTab
+            SwitchToMode "Locked"
+        }
+        bind "n" {
+            NewTab
+            SwitchToMode "Locked"
+        }
+        bind "x" {
+            CloseTab
+            SwitchToMode "Locked"
+        }
+        bind "r" {
+            SwitchToMode "RenameTab"
+            TabNameInput 0
+        }
+        bind "Left" "Up" "[" {
+            GoToPreviousTab
+        }
+        bind "Right" "Down" "]" {
+            GoToNextTab
+        }
     }
-
     renametab {
-        bind "Esc"    { SwitchToMode "Locked"; }
-        bind "Ctrl c" { UndoRenameTab; SwitchToMode "Tab"; }
+        bind "Esc" {
+            SwitchToMode "Locked"
+        }
+        bind "Ctrl c" {
+            UndoRenameTab
+            SwitchToMode "Tab"
+        }
     }
-
     session {
-        bind "Esc" { SwitchToMode "Locked"; }
-        bind "d"   { Detach; }
-        bind "w"   {
+        bind "Esc" {
+            SwitchToMode "Locked"
+        }
+        bind "d" {
+            Detach
+        }
+        bind "w" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
                 move_to_focused_tab true
-            };
+            }
             SwitchToMode "Locked"
         }
     }
 }
-
 plugins {
-    tab-bar         { path "tab-bar"; }
-    status-bar      { path "status-bar"; }
-    strider         { path "strider"; }
-    compact-bar     { path "compact-bar"; }
-    session-manager { path "session-manager"; }
+    tab-bar {
+        path "tab-bar"
+    }
+    status-bar {
+        path "status-bar"
+    }
+    strider {
+        path "strider"
+    }
+    compact-bar {
+        path "compact-bar"
+    }
+    session-manager {
+        path "session-manager"
+    }
 }
-
 pane_frames false
-
 theme "gruvbox-dark"
 default_layout "default"
 default_mode "locked"
-// Enable or disable automatic copy (and clear) of selection when releasing mouse
+ // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
 //
 // copy_on_select false
 
-// Path to the default editor to use to edit pane scrollbuffer
-// Default: $EDITOR or $VISUAL
-//
-// scrollback_editor "/usr/bin/vim"
-
-layout_dir "/Users/person/.config/zellij/layouts"
-theme_dir "/Users/person/.config/zellij/themes"

@@ -2,31 +2,26 @@ layout {
     pane split_direction="vertical" {
         pane
     }
-
     pane size=1 borderless=true {
-            plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
-                format_left  " {session} {mode} {tabs}"
-                format_right "{datetime} "
-
-
-                mode_locked "#[fg=red] {name} "
-                mode_normal "#[fg=blue] {name} "
-                mode_resize "#[fg=yellow] {name} "
-                mode_pane "#[fg=#E78A4E] {name} "
-                mode_tab "#[fg=#D3869B] {name} "
-                mode_session "#[fg=green] {name} "
-                mode_default_to_mode "resize"
-
-                tab_normal "#[bg=bg,fg=#6C7086]{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}"
-                tab_active "#[bg=black,fg=white]{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}"
-
-                tab_sync_indicator       " "
-                tab_fullscreen_indicator "□ "
-                tab_floating_indicator   "󰉈 "
-                datetime        "#[fg=#6C7086] {format} "
-                datetime_format "%a %d %b %H:%M"
-                datetime_timezone "Asia/Seoul"
-            }
+        plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+            format_left " {session} {mode} {tabs}"
+            format_right "{datetime} "
+            mode_locked "#[fg=red] {name} "
+            mode_normal "#[fg=blue] {name} "
+            mode_resize "#[fg=yellow] {name} "
+            mode_pane "#[fg=#E78A4E] {name} "
+            mode_tab "#[fg=#D3869B] {name} "
+            mode_session "#[fg=green] {name} "
+            mode_default_to_mode "resize"
+            tab_normal "#[bg=bg,fg=#6C7086]{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}"
+            tab_active "#[bg=black,fg=white]{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}"
+            tab_sync_indicator " "
+            tab_fullscreen_indicator "□ "
+            tab_floating_indicator "󰉈 "
+            datetime "#[fg=#6C7086] {format} "
+            datetime_format "%a %d %b %H:%M"
+            datetime_timezone "Asia/Seoul"
         }
+    }
 }
 

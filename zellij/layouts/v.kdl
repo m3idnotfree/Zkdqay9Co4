@@ -1,6 +1,8 @@
 layout {
-    pane {}
-    pane  {
+    pane {
+
+    }
+    pane {
         size 10
     }
 }

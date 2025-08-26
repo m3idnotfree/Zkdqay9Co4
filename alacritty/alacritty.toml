@@ -1,19 +1,14 @@
+[general]
 import = [
   "~/.config/alacritty/theme.toml",
-  "~/.config/alacritty/keybinding.toml.toml",
+  "~/.config/alacritty/keybinding.toml",
 ]
-
-[shell]
-program = "/bin/zsh"
-args = ["-l", "-c", "zellij"]
-# args = ["-l"]
 
 [window]
 dimensions = { columns = 80, lines = 24 }
-position = { x = 0, y = 0 }
-decorations = "Buttonless"
-# (macos only)
-option_as_alt = "Both"
+decorations = "Buttonless"                # (macOS only)
+decorations_theme_variant = "Dark"
+option_as_alt = "Both"                    # (macOS only)
 
 [font]
 normal = { family = "IosevkaTerm NF", style = "Regular" }
@@ -22,11 +17,10 @@ size = 19.5
 [cursor]
 style = { shape = "Block" }
 
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "zellij"]
+# args = ["-l"]
+
 [mouse]
 hide_when_typing = true
-
-[keyboard]
-bindings = [
-  { key = "Insert", mods = "Control", action = "Copy" },
-  { key = "Insert", mods = "Shift", action = "Paste" },
-]

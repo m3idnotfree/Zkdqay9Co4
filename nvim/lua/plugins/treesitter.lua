@@ -1,0 +1,140 @@
+return {
+  {
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground',
+    },
+    build = ':TSUpdate',
+    lazy = false,
+    init = function()
+      require 'nvim-treesitter.query_predicates'
+    end,
+    opts = {
+      auto_install = true,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'markdown' },
+      },
+      indent = { enable = true },
+      ensure_installed = {
+        'lua',
+        'vim',
+        'vimdoc',
+        'html',
+        'css',
+        'scss',
+        'javascript',
+        'typescript',
+        'tsx',
+        'json',
+        'jsonc',
+        'json5',
+        'kdl',
+        'yaml',
+        'toml',
+        'ini',
+        'rust',
+        'diff',
+        'git_config',
+        'gitcommit',
+        'git_rebase',
+        'gitignore',
+        'gitattributes',
+        'gitignore',
+        'markdown',
+        'markdown_inline',
+        'haskell',
+        'bash',
+        'norg',
+        'query',
+        'regex',
+        'ninja',
+        'python',
+        'rst',
+        'c',
+        'cpp',
+        'devicetree',
+        'xml',
+        'http',
+        'graphql',
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn', -- set to `false` to disable one of the mappings
+          node_incremental = '<CR>',
+          scope_incremental = false,
+          node_decremental = '<bs>',
+        },
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          goto_next_start = {
+            [']f'] = '@function.outer',
+            [']c'] = '@class.outer',
+          },
+          goto_next_end = {
+            [']F'] = '@function.outer',
+            [']C'] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[f'] = '@function.outer',
+            ['[c'] = '@class.outer',
+          },
+          goto_previous_end = {
+            ['[F'] = '@function.outer',
+            ['[C'] = '@class.outer',
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ['<leader>ps'] = '@parameter.inner',
+            ['<leader>pf'] = '@function.outer',
+            ['<leader>pa'] = '@argument.inner',
+          },
+          swap_previous = {
+            ['<leader>pS'] = '@parameter.inner',
+            ['<leader>pF'] = '@function.outer',
+            ['<leader>pA'] = '@argument.inner',
+          },
+        },
+      },
+      playground = {
+        enable = true,
+      },
+    },
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end,
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    ft = {
+      'astro',
+      'handlebars',
+      'html',
+      'javascript',
+      'jsx',
+      'liquid',
+      'markdown',
+      'php',
+      'rescript',
+      'svelte',
+      'tsx',
+      'typescript',
+      'vue',
+      'xml',
+    },
+    opts = {},
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = 'VeryLazy',
+    opts = { max_lines = 3 },
+  },
+}
